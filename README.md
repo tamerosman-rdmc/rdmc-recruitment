@@ -1,8 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RDMC Recruitment - Resume Evaluation App
+
+This is a [Next.js](https://nextjs.org) project for evaluating resumes against job positions. The app allows users to upload PDF resumes and get detailed analysis including applicability scores, experience matching, and skill assessments.
+
+## Features
+
+- **Job Position Selection**: Choose from various predefined job positions
+- **Resume Upload**: Upload PDF resumes for analysis
+- **Detailed Analysis**: Get comprehensive feedback including:
+  - Applicability score
+  - Experience matching
+  - Personal information extraction
+  - Skills assessment
+  - Language proficiency
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -16,9 +37,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 15 with App Router
+- **UI Components**: Shadcn/ui components
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **File Upload**: PDF processing and analysis
 
 ## Learn More
 

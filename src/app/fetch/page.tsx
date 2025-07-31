@@ -20,7 +20,8 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-import { Search, ExternalLink, User, MapPin, Briefcase, Eye, RefreshCw, Check, ChevronsUpDown } from 'lucide-react';
+import { Search, ExternalLink, User, MapPin, Briefcase, Eye, RefreshCw, Check, ChevronsUpDown, PlusIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface SearchResult {
   kind: string;
@@ -59,6 +60,8 @@ export default function SearchPage() {
   const [vacancyOpen, setVacancyOpen] = useState(false);
   const [vacanciesLoading, setVacanciesLoading] = useState(false);
 
+  const router = useRouter();
+
   // Fetch vacancies on component mount
   useEffect(() => {
     fetchVacancies();
@@ -80,11 +83,11 @@ export default function SearchPage() {
     } catch (err) {
       console.error('Error fetching vacancies:', err);
       // Set some sample data for demo purposes
-      setVacancies([
-        { key: "Software Developer", value: "The Software Developer plays a critical role in the end-to-end delivery of high-quality digital solutions." },
-        { key: "Data Scientist", value: "Analyze complex data sets to identify trends and insights that drive business decisions." },
-        { key: "DevOps Engineer", value: "Manage infrastructure and deployment pipelines for scalable applications." }
-      ]);
+    //   setVacancies([
+    //     { key: "Software Developer", value: "The Software Developer plays a critical role in the end-to-end delivery of high-quality digital solutions." },
+    //     { key: "Data Scientist", value: "Analyze complex data sets to identify trends and insights that drive business decisions." },
+    //     { key: "DevOps Engineer", value: "Manage infrastructure and deployment pipelines for scalable applications." }
+    //   ]);
     } finally {
       setVacanciesLoading(false);
     }
@@ -186,6 +189,14 @@ export default function SearchPage() {
     return imageErrors.has(imageUrl);
   };
 
+  const gotoAddJobDescription = () => {
+
+    // Navigate to the job description page
+    router.push('/add-job-description');
+
+    };
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-6xl mx-auto">
@@ -199,8 +210,10 @@ export default function SearchPage() {
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <div className="flex flex-col gap-4">
             {/* Vacancy Selector */}
-            <div>
-              <Label className="text-sm font-medium text-gray-700 mb-2 block">
+            <div className='flex flex-row gap-3 w-full' >
+                <div className='flex-1'>
+
+ <Label className="text-sm font-medium text-gray-700 mb-2 block">
                 Select Job Description Template (Optional)
               </Label>
               <Popover open={vacancyOpen} onOpenChange={setVacancyOpen}>
@@ -251,10 +264,22 @@ export default function SearchPage() {
                   </Command>
                 </PopoverContent>
               </Popover>
+
+                </div>
+                 <div className="flex items-end">
+                <Button 
+                  onClick={gotoAddJobDescription} 
+                  className="bg-teal-600 hover:bg-teal-700 h-fit"
+                >
+                  <PlusIcon className="h-4 w-4 mr-2" />
+                  Add Job Description
+                </Button>
+              </div>
+             
             </div>
 
             {/* Search Input */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-col gap-4">
               <div className="flex-1">
                 <Label htmlFor="search" className="text-sm font-medium text-gray-700 mb-2 block">
                   Job Description or Search Criteria
